@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Cell
@@ -25,7 +26,7 @@ public class Cell
         return (walls & wallDirection) != 0;
     }
     
-    public List<Cell> GetNeighbours(Cell[] grid)
+    public List<Cell> GetNeighbours(Cell[,] grid)
     {
         List<Cell> result = new List<Cell>();
         for (int x = -1; x < 2; x++)
@@ -34,7 +35,7 @@ public class Cell
             {
                 int cellX = this.gridPosition.x + x;
                 int cellY = this.gridPosition.y + y;
-                if (cellX < 0 || cellX >= width || cellY < 0 || cellY >= height || Mathf.Abs(x) == Mathf.Abs(y))
+                if (cellX < 0 || cellX >= grid.GetLength(0) || cellY < 0 || cellY >= grid.GetLength(1) || Mathf.Abs(x) == Mathf.Abs(y))
                 {
                     continue;
                 }
