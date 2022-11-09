@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGeneration : MonoBehaviour
@@ -87,7 +87,7 @@ public class MazeGeneration : MonoBehaviour
             int randomX = Random.Range(0, width);
             int randomY = Random.Range(0, height);
             Cell randomCell = grid[randomX, randomY];
-            List<Cell> neighbours = GetNeighbours(randomCell);
+            List<Cell> neighbours = randomCell.GetNeighbours(grid);
             if (neighbours.Count > 0)
             {
                 Cell randomNeighbour = neighbours[Random.Range(0, neighbours.Count)];
