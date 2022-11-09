@@ -126,25 +126,7 @@ public class MazeGeneration : MonoBehaviour
         return walls;
     }
 
-    private List<Cell> GetNeighbours(Cell cell)
-    {
-        List<Cell> result = new List<Cell>();
-        for (int x = -1; x < 2; x++)
-        {
-            for (int y = -1; y < 2; y++)
-            {
-                int cellX = cell.gridPosition.x + x;
-                int cellY = cell.gridPosition.y + y;
-                if (cellX < 0 || cellX >= width || cellY < 0 || cellY >= height || Mathf.Abs(x) == Mathf.Abs(y))
-                {
-                    continue;
-                }
-                Cell canditateCell = grid[cellX, cellY];
-                result.Add(canditateCell);
-            }
-        }
-        return result;
-    }
+
 
     /// <summary>
     /// Gets the unvisited neighbours for a cell
@@ -208,37 +190,3 @@ public class MazeGeneration : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class Cell
-{
-    public Vector2Int gridPosition;
-    public Wall walls; //bit Encoded
-    public void RemoveWall(Wall wallToRemove)
-    {
-        walls = (walls & ~wallToRemove);
-    }
-
-    public int GetNumWalls()
-    {
-        int numWalls = 0;
-        if (((walls & Wall.DOWN) != 0)) { numWalls++; }
-        if (((walls & Wall.UP) != 0)) { numWalls++; }
-        if (((walls & Wall.LEFT) != 0)) { numWalls++; }
-        if (((walls & Wall.RIGHT) != 0)) { numWalls++; }
-        return numWalls;
-    }
-
-    public bool HasWall(Wall wall)
-    {
-        return (walls & wall) != 0;
-    }
-}
-
-[System.Flags]
-public enum Wall
-{
-    LEFT = 0x1,
-    UP = 0x2,
-    RIGHT = 0x4,
-    DOWN = 0x8
-}
