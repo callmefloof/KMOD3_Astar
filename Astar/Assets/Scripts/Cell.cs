@@ -50,8 +50,8 @@ public class Cell
 [System.Flags]
 public enum Wall
 {
-    LEFT = 0x1,
-    UP = 0x2,
-    RIGHT = 0x4,
-    DOWN = 0x8
+    LEFT    = 1,
+    UP      = 2,
+    RIGHT   = 4,
+    DOWN    = 8
 }
