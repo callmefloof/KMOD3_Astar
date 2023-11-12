@@ -6,9 +6,8 @@ using System.Linq;
 public class Astar
 {
     /// <summary>
-    /// TODO: Implement this function so that it returns a list of Vector2Int positions which describes a path
+    /// TODO: Implement this function so that it returns a list of Vector2Int positions which describes a path from the startPos to the endPos
     /// Note that you will probably need to add some helper functions
-    /// from the startPos to the endPos
     /// </summary>
     /// <param name="startPos"></param>
     /// <param name="endPos"></param>
