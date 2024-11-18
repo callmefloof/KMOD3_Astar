@@ -44,15 +44,20 @@ public class Astar
                 Vector2Int.right,
                 Vector2Int.up,
                 Vector2Int.down,
-                Vector2Int.left + Vector2Int.up,
-                Vector2Int.right + Vector2Int.up,
-                Vector2Int.left + Vector2Int.down,
-                Vector2Int.right + Vector2Int.down
+                
             };
 
             foreach(Vector2Int direction in directions)
             {
                 Vector2Int neighborPos = currentPos + direction;
+                if(neighborPos.x > grid.GetLength(0) 
+                    || neighborPos.y > grid.GetLength(1)
+                    || neighborPos.x < 0
+                    || neighborPos.y < 0)
+                {
+                    continue;
+                }
+                
                 if(closedSet.Any(node => node.position == neighborPos))
                 {
                     continue;
@@ -63,7 +68,10 @@ public class Astar
                 int tentativeGScore = (int)(current.GScore + distCtoN);
                 if(neighbor == null || tentativeGScore < neighbor.GScore)
                 {
-                    
+                    if(IsCollidingWithWall(grid[currentPos.x, currentPos.y], direction))
+                    {
+                        continue;
+                    }
                     if(neighbor == null)
                     {
                         int distNtoE = (int)Vector2Int.Distance(current.position, neighborPos) *10;
@@ -86,6 +94,27 @@ public class Astar
         }
 
         return null;
+    }
+
+    private bool IsCollidingWithWall(Cell cell, Vector2Int direction)
+    {
+        if((cell.walls & Wall.LEFT ) != 0 && direction == Vector2Int.left)
+        {
+            return true;
+        }
+        if((cell.walls & Wall.RIGHT ) != 0 && direction == Vector2Int.right)
+        {
+            return true;
+        }
+        if((cell.walls & Wall.UP ) != 0 && direction == Vector2Int.up)
+        {
+            return true;
+        }
+        if((cell.walls & Wall.DOWN ) != 0 && direction == Vector2Int.down)
+        {
+            return true;
+        }
+        return false;
     }
 
 
