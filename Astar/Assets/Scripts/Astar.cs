@@ -138,23 +138,6 @@ public class Astar
         return totalPath;
     }
 
-    // private Dictionary<Vector2Int, Node> GenerateNodes(Cell[,] grid)
-    // {
-        
-    //     Dictionary<Vector2Int,Node> nodes = new Dictionary<Vector2Int, Node>();
-    //     for(int x = 0; x < grid.GetLength(0); x++)
-    //     {
-    //         for(int y = 0; y < grid.GetLength(1); y++)
-    //         {
-    //             int gCost = 0;     
-    
-    //             Node node = new Node(grid[x,y].gridPosition, null, gCost, 0);
-    //             nodes.Add(grid[x,y].gridPosition, node);
-    //         }
-    //     }
-    //     return nodes;
-    // }
-
     /// <summary>
     /// This is the Node class you can use this class to store calculated FScores for the cells of the grid, you can leave this as it is
     /// </summary>
